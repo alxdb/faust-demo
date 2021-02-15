@@ -1,0 +1,21 @@
+version: "3.6"
+
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+
+  kafka:
+    image: wurstmeister/kafka
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: kafka
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+    depends_on:
+      - zookeeper
+
+  faust:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/faust-demo
+
