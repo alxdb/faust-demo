@@ -1,6 +1,6 @@
 # Faust Demo
 
-This project demonstrates how faust can be used to build real time data computation services
+This project demonstrates how faust can be used to build real time data services
 
 ## Usage
 
