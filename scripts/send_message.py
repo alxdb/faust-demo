@@ -6,6 +6,7 @@ import json
 import asyncio
 import aiokafka
 
+
 @dataclasses.dataclass
 class UserUpdate():
     user_id: int
@@ -20,7 +21,8 @@ async def send_update(producer: aiokafka.AIOKafkaProducer, update: UserUpdate):
 
 @contextlib.asynccontextmanager
 async def make_producer(loop):
-    producer = aiokafka.AIOKafkaProducer(loop=loop, bootstrap_servers=["kafka"])
+    producer = aiokafka.AIOKafkaProducer(loop=loop,
+                                         bootstrap_servers=["kafka"])
     await producer.start()
     try:
         yield producer

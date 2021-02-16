@@ -1,4 +1,5 @@
 from typing import Any
+
 import logging
 
 import faust
@@ -24,10 +25,11 @@ async def process_user_updates(updates: faust.StreamT[UserUpdate]):
             user[update.event_type] = update.event_data
             users_table[update.user_id] = user
         else:
-            users_table[update.user_id] = {update.event_type: update.event_data}
+            users_table[update.user_id] = {
+                update.event_type: update.event_data
+            }
 
 
 @app.page("/users")
 async def get_users(self, request):
     return self.json({k: v for k, v in users_table.items()})
-
