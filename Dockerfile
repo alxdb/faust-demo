@@ -1,5 +1,6 @@
 FROM python:3.9 AS build
 RUN pip install poetry
+RUN apt-get install librocksdb-dev
 
 COPY . faust-demo
 WORKDIR /faust-demo

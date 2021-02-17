@@ -1,4 +1,8 @@
-FROM python:3.9 AS build
+FROM python:3.9-buster AS build
+
+RUN apt-get update
+RUN apt-get -y install librocksdb-dev libsnappy-dev liblz4-dev
+
 RUN pip install poetry
 RUN poetry config virtualenvs.create false
 
